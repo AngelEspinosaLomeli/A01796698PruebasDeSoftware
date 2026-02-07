@@ -1,5 +1,5 @@
 """
-Module to convert numbers from a file to Binary and Hexadecimal.
+Módulo para convertir números de un archivo a binario y hexadecimal.
 """
 
 # pylint: disable=invalid-name
@@ -9,7 +9,7 @@ import time
 
 
 def to_binary(n):
-    """Converts a number to binary using basic algorithms."""
+    """Convierte un número a binario utilizando algoritmos básicos."""
     if n == 0:
         return "0"
     is_neg = n < 0
@@ -22,7 +22,7 @@ def to_binary(n):
 
 
 def to_hexadecimal(n):
-    """Converts a number to hexadecimal using basic algorithms."""
+    """Convierte un número a hexadecimal utilizando algoritmos básicos."""
     if n == 0:
         return "0"
     chars = "0123456789ABCDEF"
@@ -36,7 +36,7 @@ def to_hexadecimal(n):
 
 
 def process_file(file_path):
-    """Reads file and returns a list of results."""
+    """Lee el archivo y devuelve una lista de resultados."""
     data_list = []
     try:
         with open(file_path, 'r', encoding='utf-8') as f:
@@ -56,7 +56,7 @@ def process_file(file_path):
 
 
 def main():
-    """Main execution function."""
+    """Función de ejecución principal."""
     if len(sys.argv) < 2:
         print("Usage: python convertNumbers.py fileWithData.txt")
         return
@@ -78,4 +78,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
     
