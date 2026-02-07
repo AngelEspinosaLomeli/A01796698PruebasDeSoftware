@@ -1,5 +1,5 @@
 """
-Program to compute descriptive statistics from a file.
+Programa para calcular estadísticas descriptivas a partir de un archivo.
 """
 
 # pylint: disable=invalid-name
@@ -10,7 +10,7 @@ import time
 
 
 def get_numbers_from_file(file_path):
-    """Reads a file and returns a list of valid numbers."""
+    """Lee un archivo y devuelve una lista de números válidos."""
     numbers = []
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -29,7 +29,7 @@ def get_numbers_from_file(file_path):
 
 
 def compute_statistics(data):
-    """Calculates mean, median, mode, variance, and std deviation."""
+    """Calcula la media, la mediana, la moda, la varianza y la desviación estándar."""
     n = len(data)
     if n == 0:
         return None
@@ -80,7 +80,7 @@ def compute_statistics(data):
 
 
 def main():
-    """Main execution function."""
+    """Función de ejecución principal."""
     if len(sys.argv) < 2:
         print("Usage: python computeStatistics.py fileWithData.txt")
         return
@@ -114,4 +114,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
