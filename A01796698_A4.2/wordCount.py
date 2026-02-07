@@ -1,5 +1,5 @@
 """
-Module to count word frequency from a file.
+Módulo para contar la frecuencia de palabras de un archivo.
 """
 
 # pylint: disable=invalid-name
@@ -9,7 +9,7 @@ import time
 
 
 def get_words_from_file(file_path):
-    """Reads a file and returns a list of all words found."""
+    """Lee un archivo y devuelve una lista de todas las palabras encontradas."""
     words = []
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
@@ -31,7 +31,7 @@ def get_words_from_file(file_path):
 
 
 def count_frequencies(word_list):
-    """Counts frequency of each word using basic dictionary algorithm."""
+    """Cuenta la frecuencia de cada palabra utilizando el algoritmo básico del diccionario."""
     freq_dict = {}
     for word in word_list:
         if word in freq_dict:
@@ -42,7 +42,7 @@ def count_frequencies(word_list):
 
 
 def main():
-    """Main execution function."""
+    """Función de ejecución principal."""
     if len(sys.argv) < 2:
         print("Usage: python wordCount.py fileWithData.txt")
         return
@@ -75,4 +75,5 @@ def main():
 
 
 if __name__ == "__main__":
+
     main()
