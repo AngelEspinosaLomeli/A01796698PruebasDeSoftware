@@ -1,3 +1,4 @@
+# pylint: disable=invalid-name
 """
 Compute Sales Program
 Calculates total sales based on a price catalogue and a sales record.
@@ -17,8 +18,8 @@ def load_json_file(file_path):
         print(f"Error: The file '{file_path}' was not found.")
     except json.JSONDecodeError:
         print(f"Error: The file '{file_path}' is not a valid JSON.")
-    except Exception as e:
-        print(f"An unexpected error occurred: {e}")
+    except OSError as e:
+        print(f"OS error occurred: {e}")
     return None
 
 
@@ -97,3 +98,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
