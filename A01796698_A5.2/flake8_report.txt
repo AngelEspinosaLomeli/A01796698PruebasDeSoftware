@@ -1,0 +1,2 @@
+[1mcomputeSales.py[m[36m:[m101[36m:[m1[36m:[m [1m[31mW293[m blank line contains whitespace
+[1mcomputeSales.py[m[36m:[m101[36m:[m5[36m:[m [1m[31mW292[m no newline at end of file
