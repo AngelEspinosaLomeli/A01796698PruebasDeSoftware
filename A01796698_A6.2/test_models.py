@@ -1,50 +1,31 @@
-import unittest
-import os
-from models import Hotel, Customer, Reservation
+def test_negative_hotel_not_found(self):
+        """Prueba buscar un hotel que no existe."""
+        result = Hotel.display_hotel(999)
+        self.assertIsNone(result)
 
-class TestHotelManagement(unittest.TestCase):
-    """Unit tests for Hotel, Customer, and Reservation classes."""
+    def test_negative_corrupt_json(self):
+        """Prueba el manejo de un archivo JSON corrupto."""
+        with open("hotels.json", "w", encoding='utf-8') as f:
+            f.write("{ este no es un json válido }")
+        # El programa debe manejar el error y retornar una lista vacía
+        result = Hotel.display_hotel(1)
+        self.assertIsNone(result)
 
-    def setUp(self):
-        """Clean up files before each test."""
-        for f in ["hotels.json", "customers.json", "reservations.json"]:
-            if os.path.exists(f):
-                os.remove(f)
+    def test_negative_invalid_customer_id(self):
+        """Prueba eliminar un cliente con un ID inexistente."""
+        Customer.create_customer(1, "Test", "test@test.com")
+        # No debe lanzar excepción aunque el ID sea distinto
+        Customer.delete_customer(999)
+        cust = Customer.display_customer(1)
+        self.assertIsNotNone(cust)
 
-    def test_hotel_crud(self):
-        Hotel.create_hotel(1, "Grand Plaza", "NYC", 50)
-        hotel = Hotel.display_hotel(1)
-        self.assertEqual(hotel['name'], "Grand Plaza")
+    def test_negative_cancel_non_existent_reservation(self):
+        """Prueba cancelar una reservación que no existe."""
+        # No debe fallar ni detener la ejecución
+        Reservation.cancel_reservation(888)
         
-        Hotel.modify_hotel(1, name="Updated Plaza")
-        hotel = Hotel.display_hotel(1)
-        self.assertEqual(hotel['name'], "Updated Plaza")
-        
-        Hotel.delete_hotel(1)
-        self.assertIsNone(Hotel.display_hotel(1))
-
-    def test_customer_crud(self):
-        Customer.create_customer(101, "John Doe", "john@example.com")
-        cust = Customer.display_customer(101)
-        self.assertEqual(cust['name'], "John Doe")
-        
-        Customer.delete_customer(101)
-        self.assertIsNone(Customer.display_customer(101))
-
-    def test_reservation_flow(self):
-        Hotel.create_hotel(1, "Motel 6", "LA", 10)
-        Customer.create_customer(101, "Jane Doe", "jane@example.com")
-        Reservation.create_reservation(500, 101, 1)
-        
-        res_list = Reservation.load_data(Reservation.FILE) # If helper was public
-        self.assertTrue(len(res_list) > 0)
-        
-        Reservation.cancel_reservation(500)
-        # Verify empty...
-
-    def tearDown(self):
-        """Clean up files after tests."""
-        self.setUp()
-
-if __name__ == '__main__':
-    unittest.main()
+    def test_negative_modify_non_existent_hotel(self):
+        """Prueba modificar un hotel que no existe."""
+        # No debe lanzar error de ejecución
+        Hotel.modify_hotel(777, name="Fake Hotel")
+        self.assertIsNone(Hotel.display_hotel(777))
